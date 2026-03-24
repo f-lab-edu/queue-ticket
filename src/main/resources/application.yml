@@ -18,3 +18,5 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
+  profiles:
+    active: local
