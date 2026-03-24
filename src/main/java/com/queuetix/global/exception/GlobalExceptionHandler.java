@@ -12,12 +12,19 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+    private final View error;
+
+    public GlobalExceptionHandler(View error) {
+        this.error = error;
+    }
+
     @Override
     protected @Nullable ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex
@@ -49,24 +56,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(ErrorResponse.ValidationErrors::of)
                 .toList();
 
-        return ErrorResponse.builder()
-                .code(errorCode.name())
-                .message(errorCode.getMessage())
-                .errors(errors)
-                .build();
+        return makeErrorResponse(errorCode, e.getMessage(), errors);
     }
 
     private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
-        return ErrorResponse.builder()
-                .code(errorCode.name())
-                .message(errorCode.getMessage())
-                .build();
+        return makeErrorResponse(errorCode, errorCode.getMessage());
     }
 
     private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message) {
+        return makeErrorResponse(errorCode, message, null);
+    }
+
+    private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message, List<ErrorResponse.ValidationErrors> errors) {
         return ErrorResponse.builder()
                 .code(errorCode.name())
                 .message(message)
+                .errors(errors)
                 .build();
     }
 
