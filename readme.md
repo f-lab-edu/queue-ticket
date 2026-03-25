@@ -1,4 +1,9 @@
-요구사항
+## <div style="text-align: center;">Queue Ticket</div>
+<div style="text-align: center;">대량 트래픽 환경의 티켓 예매 시스템</div>
+
+---
+
+### 요구사항
 - 로그인, 로그아웃
   - 세션기반
 - 예매 버튼 클릭시 대기열 진입
