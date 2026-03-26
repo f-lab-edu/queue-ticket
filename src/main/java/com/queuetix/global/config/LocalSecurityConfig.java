@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@Profile("!local")
-public class SecurityConfig {
+@Profile("local")
+public class LocalSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -22,6 +22,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/login","/api/members").permitAll()
                 .anyRequest().authenticated()
             )
+            .csrf(AbstractHttpConfigurer::disable)
             .formLogin(AbstractHttpConfigurer::disable)
             .httpBasic(AbstractHttpConfigurer::disable)
             .logout(logout -> logout

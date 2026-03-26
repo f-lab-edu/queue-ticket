@@ -1,20 +1,17 @@
 package com.queuetix.member.repository;
 
 import com.queuetix.member.domain.Member;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class MemberRepository {
-    @PersistenceContext
-    private final EntityManager em;
+import java.util.Optional;
 
-    public MemberRepository(EntityManager em) {
-        this.em = em;
-    }
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    Optional<Member> findByLoginId(String loginId);
 
-    public void save(Member member) {
-        em.persist(member);
-    }
+    Optional<Member> findByEmail(String email);
+
+    Optional<Member> findByPhone(String phone);
 }

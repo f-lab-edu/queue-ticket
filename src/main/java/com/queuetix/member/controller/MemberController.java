@@ -1,5 +1,7 @@
 package com.queuetix.member.controller;
 
+import com.queuetix.global.exception.QueueTixException;
+import com.queuetix.global.exception.code.MemberErrorCode;
 import com.queuetix.member.dto.MemberSignUpRequest;
 import com.queuetix.member.service.MemberService;
 import jakarta.validation.Valid;
@@ -8,9 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class MemberController {
     private final MemberService memberService;
 

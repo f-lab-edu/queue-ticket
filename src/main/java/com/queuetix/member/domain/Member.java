@@ -1,8 +1,7 @@
 package com.queuetix.member.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -19,7 +18,7 @@ public class Member {
     private String name;
     @Column(unique = true)
     private String email;
-    @Column
+    @Column(unique = true)
     private String phone;
     @Column
     private String address;
