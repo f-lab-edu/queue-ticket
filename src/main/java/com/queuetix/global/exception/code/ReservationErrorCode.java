@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 @Getter
-@RequiredArgsConstructor
 public enum ReservationErrorCode implements ErrorCode {
     RESERVATION_NOT_OPENED(HttpStatus.CONFLICT, "티켓 예매 오픈 전입니다.")
     , SEAT_ALREADY_RESERVED(HttpStatus.CONFLICT, "이미 예약된 좌석입니다.")
@@ -18,4 +17,9 @@ public enum ReservationErrorCode implements ErrorCode {
 
     private final HttpStatusCode httpStatusCode;
     private final String message;
+
+    ReservationErrorCode(HttpStatusCode httpStatusCode, String message) {
+        this.httpStatusCode = httpStatusCode;
+        this.message = message;
+    }
 }

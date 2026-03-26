@@ -1,0 +1,12 @@
+### 회원가입
+POST http://localhost:8080/api/members
+Accept: application/json
+Content-Type: application/json
+
+{
+  "loginId": "alrscent",
+  "password": "1111",
+  "name": "이미향",
+  "email": "mihyang.sol.lee@gmail.com",
+  "phone": "010-0000-0000"
+}

@@ -5,6 +5,6 @@ create table member
     password VARCHAR(255) NOT NULL ,
     name     VARCHAR(100) NOT NULL,
     email    VARCHAR(50) NOT NULL,
-    phone    VARCHAR(12),
+    phone    VARCHAR(13),
     address  VARCHAR(500)
 );
