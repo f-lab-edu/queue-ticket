@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 @Getter
-@RequiredArgsConstructor
 public enum QueueErrorCode implements ErrorCode {
     QUEUE_TOKEN_REQUIRED(HttpStatus.FORBIDDEN, "대기열 접근 권한이 없습니다.")
     , QUEUE_TOKEN_INVALID(HttpStatus.FORBIDDEN, "유효한 권한이 없습니다.")
@@ -16,4 +15,9 @@ public enum QueueErrorCode implements ErrorCode {
 
     private final HttpStatusCode httpStatusCode;
     private final String message;
+
+    QueueErrorCode(HttpStatusCode httpStatusCode, String message) {
+        this.httpStatusCode = httpStatusCode;
+        this.message = message;
+    }
 }
