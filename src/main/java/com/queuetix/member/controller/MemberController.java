@@ -1,7 +1,5 @@
 package com.queuetix.member.controller;
 
-import com.queuetix.global.exception.QueueTixException;
-import com.queuetix.global.exception.code.MemberErrorCode;
 import com.queuetix.member.dto.MemberSignUpRequest;
 import com.queuetix.member.service.MemberService;
 import jakarta.validation.Valid;
